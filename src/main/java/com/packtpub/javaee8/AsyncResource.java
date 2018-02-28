@@ -1,5 +1,6 @@
 package com.packtpub.javaee8;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@ApplicationScoped
 @Path("async")
 @Produces({MediaType.APPLICATION_JSON})
 public class AsyncResource {
@@ -27,7 +29,9 @@ public class AsyncResource {
         String currentThreadName = getCurrentThreadName();
         LOGGER.log(Level.INFO, "Locking {0} with thread {1}.", new Object[]{asyncResponse, currentThreadName});
 
-        asyncResponse.setTimeout(30, TimeUnit.SECONDS);
+        asyncResponse.setTimeout(10, TimeUnit.SECONDS);
+        asyncResponse.setTimeoutHandler((r) -> responses.remove(r));
+
         responses.put(asyncResponse);
     }
 
@@ -36,8 +40,10 @@ public class AsyncResource {
         String currentThreadName = getCurrentThreadName();
         AsyncResponse asyncResponse = responses.poll();
 
-        LOGGER.log(Level.INFO, "Unlocking {0} with thread {1}.", new Object[]{asyncResponse, currentThreadName});
-        asyncResponse.resume(Response.ok(Collections.singletonMap("currentThread", currentThreadName)).build());
+        if (asyncResponse != null) {
+            LOGGER.log(Level.INFO, "Unlocking {0} with thread {1}.", new Object[]{asyncResponse, currentThreadName});
+            asyncResponse.resume(Response.ok(Collections.singletonMap("currentThread", currentThreadName)).build());
+        }
 
         return Response.noContent().build();
     }
