@@ -20,7 +20,7 @@ public class ThreadResource {
     private static final Logger LOGGER = Logger.getAnonymousLogger();
 
     @GET
-    public void calculate(@Suspended final AsyncResponse asyncResponse) throws InterruptedException {
+    public void calculate(@Suspended final AsyncResponse asyncResponse) {
         asyncResponse.setTimeout(5, TimeUnit.SECONDS);
 
         final String requestThreadName = getCurrentThreadName();

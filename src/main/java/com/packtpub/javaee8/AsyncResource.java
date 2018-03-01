@@ -29,8 +29,11 @@ public class AsyncResource {
         String currentThreadName = getCurrentThreadName();
         LOGGER.log(Level.INFO, "Locking {0} with thread {1}.", new Object[]{asyncResponse, currentThreadName});
 
-        asyncResponse.setTimeout(10, TimeUnit.SECONDS);
-        asyncResponse.setTimeoutHandler((r) -> responses.remove(r));
+        asyncResponse.setTimeout(5, TimeUnit.SECONDS);
+        asyncResponse.setTimeoutHandler((response) -> {
+            responses.remove(response);
+            response.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE).build());
+        });
 
         responses.put(asyncResponse);
     }

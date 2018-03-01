@@ -17,10 +17,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AsyncResourceIntegrationTest {
+public class ThreadResourceIntegrationTest {
 
     private Client client;
     private WebTarget webTarget;
@@ -31,7 +31,7 @@ public class AsyncResourceIntegrationTest {
                 .connectTimeout(5, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS)
                 .build();
 
-        webTarget = client.target("http://localhost:8080").path("/async-service/api").path("/async");
+        webTarget = client.target("http://localhost:8080").path("/async-service/api").path("/thread");
     }
 
     @After
@@ -40,32 +40,14 @@ public class AsyncResourceIntegrationTest {
     }
 
     @Test
-    public void sync503() {
-        Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).get();
-        assertEquals(503, response.getStatus());
-    }
+    public void threadsAreDifferent() throws Exception {
+        Future<Response> futureResponse = webTarget.request().accept(MediaType.APPLICATION_JSON).async().get();
+        Response response = futureResponse.get(5, TimeUnit.SECONDS);
 
-    @Test
-    public void async503() throws Exception {
-        Future<Response> responseFuture = webTarget.request().accept(MediaType.APPLICATION_JSON).async().get();
-        Response response = responseFuture.get(6, TimeUnit.SECONDS);
-        assertEquals(503, response.getStatus());
-    }
-
-    @Test
-    public void lockUnlock() throws Exception {
-        Future<Response> responseFuture = webTarget.request().accept(MediaType.APPLICATION_JSON).async().get();
-
-        TimeUnit.SECONDS.sleep(2);
-
-        Response delete = webTarget.request().delete();
-        assertEquals(204, delete.getStatus());
-
-        Response response = responseFuture.get(5, TimeUnit.SECONDS);
         assertEquals(200, response.getStatus());
 
         Map<String, String> entity = response.readEntity(genericMap());
-        assertNotNull(entity.get("currentThread"));
+        assertNotEquals(entity.get("requestThread"), entity.get("responseThread"));
     }
 
     private GenericType<Map<String, String>> genericMap() {
