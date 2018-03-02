@@ -12,11 +12,9 @@ In this video we are showing how to use JSON-B for easy data binding.
 
 | Method | URI | Status | Description |
 |--------|-----|--------|-------------|
-| GET    | /api/json-b/ | 200 | Marshall JSON-B annotated POJO |
-| POST   | /api/json-b/ | 204 | Unmarshall and update JSON-B annotated POJO |
-| GET    | /api/json-b/custom | 200 | Marshall custom POJO using Jsonb |
-| POST   | /api/json-b/custom | 204 | Unmarshall custom POJO using Jsonb |
-
+| GET    | /api/thread | 200 | Returns request and response threads name |
+| GET    | /api/async | 200 or 503 | Locks the request thread and returns the response thread name or 503 if timeout |
+| DELETE   | /api/async | 204 | Unlocks the previous request thread |
 
 ### Video 4.3: Using ManagedExecutorService and Server-side Callbacks
 
@@ -24,10 +22,7 @@ In this video we are showing how to use JSON-P for flexible JSON processing.
 
 | Method | URI | Status | Description |
 |--------|-----|--------|-------------|
-| GET    | /api/json-p/ | 200 | Marshall a JsonArray of JsonObject using JSON-P |
-| POST   | /api/json-p/ | 204 | Unmarshall and Update a JsonArray of JsonObject using JSON-P |
-| PATCH  | /api/json-p/ | 204 | Patch a JsonArray of JsonObject using JSON-P Pointer |
-
+| GET    | /api/fibonacci/{i} | 200 | Returns the Fibonacci for i |
 
 ### Video 4.4: Implementing asynchronous web service clients
 
