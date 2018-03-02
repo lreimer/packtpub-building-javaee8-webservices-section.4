@@ -1,0 +1,199 @@
+{
+  "info": {
+    "name": "Async Service",
+    "_postman_id": "59861cb8-d965-209b-6074-4eed338ce51c",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Send async GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/async",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "async"
+          ]
+        },
+        "description": "Locks the response. After 30 seconds, 503 status."
+      },
+      "response": []
+    },
+    {
+      "name": "Send DELETE to unlock async GET",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/async",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "async"
+          ]
+        },
+        "description": null
+      },
+      "response": []
+    },
+    {
+      "name": "Send async thread GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/thread",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "thread"
+          ]
+        },
+        "description": null
+      },
+      "response": []
+    },
+    {
+      "name": "GET Fibonacci 9",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/fibonacci/9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "fibonacci",
+            "9"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "GET Fibonacci 17",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/fibonacci/17",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "fibonacci",
+            "17"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "GET Fibonacci 34",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/fibonacci/34",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "fibonacci",
+            "34"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "GET Fibonacci 42",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/fibonacci/42",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "fibonacci",
+            "42"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "GET Fibonacci 49",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:8080/async-service/api/fibonacci/49",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "async-service",
+            "api",
+            "fibonacci",
+            "49"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
