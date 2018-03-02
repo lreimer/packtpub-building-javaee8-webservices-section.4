@@ -4,11 +4,11 @@
 
 ### Video 4.1: Benefits and usage scenarios of asynchronous processing
 
-In this video we are going to talk about Content-Types and Content Negotiation.
+In this video we are talking about the benefits and possible usage scenarios of asynchronous processing.
 
 ### Video 4.2: Implementing asynchronous web services
 
-In this video we are showing how to use JSON-B for easy data binding.
+In this video we are implementing simple asynchronous web services.
 
 | Method | URI | Status | Description |
 |--------|-----|--------|-------------|
@@ -18,7 +18,8 @@ In this video we are showing how to use JSON-B for easy data binding.
 
 ### Video 4.3: Using ManagedExecutorService and Server-side Callbacks
 
-In this video we are showing how to use JSON-P for flexible JSON processing.
+In this video is showing how to use ManagedExecutorService and Server-side Callbacks
+to calculate Fibonacci numbers async.
 
 | Method | URI | Status | Description |
 |--------|-----|--------|-------------|
