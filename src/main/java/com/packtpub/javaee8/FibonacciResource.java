@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-@Path("fibonacci")
+@Path("/fibonacci")
 public class FibonacciResource {
 
     static final Logger LOGGER = Logger.getLogger(FibonacciResource.class.getName());
@@ -44,7 +44,7 @@ public class FibonacciResource {
         });
     }
 
-    private long fibonacci(int n) {
+    static long fibonacci(int n) {
         if (n <= 1) return n;
             // very inefficient
         else return fibonacci(n - 1) + fibonacci(n - 2);
@@ -53,7 +53,7 @@ public class FibonacciResource {
     /**
      * A request processing callback that receives request processing completion events.
      */
-    private static class LoggingCompletionCallback implements CompletionCallback {
+    static class LoggingCompletionCallback implements CompletionCallback {
 
         @Override
         public void onComplete(Throwable throwable) {
@@ -65,7 +65,7 @@ public class FibonacciResource {
      * Asynchronous request processing lifecycle callback that receives connection related lifecycle events.
      * According to JSR-339 support for ConnectionCallback is OPTIONAL.
      */
-    private static class LoggingConnectionCallback implements ConnectionCallback {
+    static class LoggingConnectionCallback implements ConnectionCallback {
 
         @Override
         public void onDisconnect(AsyncResponse disconnected) {
