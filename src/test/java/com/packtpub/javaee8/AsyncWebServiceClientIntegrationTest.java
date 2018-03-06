@@ -10,7 +10,6 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -45,43 +44,20 @@ public class AsyncWebServiceClientIntegrationTest {
 
     @Test
     public void fibonacci17() throws Exception {
-        Future<Long> fibonacci = webTarget.path("/fibonacci/17").request(MediaType.TEXT_PLAIN_TYPE).async().get(Long.class);
-        assertEquals(1597, (long) fibonacci.get());
-
+        // TODO implement me
     }
 
     @Test
     public void fibonacci17WithCallback() throws Exception {
-        Future<Long> fibonacci = webTarget.path("/fibonacci/17").request(MediaType.TEXT_PLAIN_TYPE).async().get(new InvocationCallback<Long>() {
-            @Override
-            public void completed(Long aLong) {
-                LOGGER.log(Level.INFO, "Completed Fibonacci 17 with {0}.", aLong);
-            }
-
-            @Override
-            public void failed(Throwable throwable) {
-                LOGGER.log(Level.WARNING, "Completed Fibonacci 17 with error.", throwable);
-            }
-        });
+        // TODO implement me
+        Future<Long> fibonacci = null;
         assertEquals(1597, (long) fibonacci.get());
     }
 
     @Test
     public void fibonacci3_4_5_6_8_21() throws Exception {
-
-        CompletableFuture<Long> fibonacci =
-                Futures.toCompletable(webTarget.path("/fibonacci/{i}").resolveTemplate("i", 3)
-                        .request(MediaType.TEXT_PLAIN_TYPE).async().get(Long.class))
-                        .thenApply(i -> webTarget.path("/fibonacci/{i}").resolveTemplate("i", i + 2)
-                                .request(MediaType.TEXT_PLAIN_TYPE).get(Long.class))
-                        .thenApply(i -> webTarget.path("/fibonacci/{i}").resolveTemplate("i", i + 2)
-                                .request(MediaType.TEXT_PLAIN_TYPE).get(Long.class))
-                        .thenApply(i -> webTarget.path("/fibonacci/{i}").resolveTemplate("i", i + 1)
-                                .request(MediaType.TEXT_PLAIN_TYPE).get(Long.class))
-                        .thenApply(i -> webTarget.path("/fibonacci/{i}").resolveTemplate("i", i)
-                                .request(MediaType.TEXT_PLAIN_TYPE).get(Long.class))
-                        .thenApply(i -> webTarget.path("/fibonacci/{i}").resolveTemplate("i", i)
-                                .request(MediaType.TEXT_PLAIN_TYPE).get(Long.class));
+        // TODO implement chained Fibonacci calculation for 3, 4, 5, 6, 8, 21
+        CompletableFuture<Long> fibonacci = null;
 
         assertEquals(10946, (long) fibonacci.get());
     }
